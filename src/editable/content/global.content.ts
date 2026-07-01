@@ -3,45 +3,66 @@ import { slot4BrandConfig } from '@/editable/theme/brand.config'
 export const globalContent = {
   site: {
     name: slot4BrandConfig.siteName,
-    tagline: slot4BrandConfig.tagline || 'Independent reading platform',
+    tagline: slot4BrandConfig.tagline || 'A refined marketplace for business discovery',
     domain: slot4BrandConfig.domain,
     baseUrl: slot4BrandConfig.baseUrl,
   },
   nav: {
-    tagline: 'Independent reading platform',
+    tagline: 'Luxury editorial listings',
     primaryLinks: [
-      { label: 'Articles', href: '/articles' },
-      { label: 'Visuals', href: '/image-sharing' },
-      { label: 'Listings', href: '/listings' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Featured', href: '/' },
+      { label: 'Editorial', href: '/article' },
+      { label: 'Community', href: '/comments' },
+      { label: 'Visuals', href: '/image' },
+      { label: 'Resources', href: '/pdf' },
     ],
-    actions: {
-      primary: { label: 'Start exploring', href: '/' },
-      secondary: { label: 'Submit', href: '/contact' },
-    },
+    utilityLinks: [
+      { label: 'Sign in', href: '/login' },
+      { label: 'Register', href: '/signup' },
+      { label: 'Editorial Picks', href: '/article' },
+      { label: 'Resources', href: '/pdf' },
+      { label: 'Help & Contact', href: '/contact' },
+    ],
+    marketLinks: [
+      { label: 'Featured', href: '/' },
+      { label: 'Editorial', href: '/article' },
+      { label: 'Community', href: '/comments' },
+      { label: 'Visuals', href: '/image' },
+      { label: 'Resources', href: '/pdf' },
+    ],
   },
   footer: {
-    tagline: 'Stories, resources, and discoverable posts',
-    description: 'A connected publishing surface for articles, visuals, listings, profiles, bookmarks, and downloadable resources.',
+    tagline: 'Curated listings, polished stories, and practical discovery tools',
+    description: 'Explore business listings, market notices, editorial features, and useful resources through one elevated public-facing destination.',
     columns: [
       {
-        title: 'Explore',
+        title: 'Browse',
         links: [
-          { label: 'Articles', href: '/articles' },
-          { label: 'Listings', href: '/listings' },
-          { label: 'Images', href: '/image-sharing' },
-          { label: 'PDF Library', href: '/pdf' },
+          { label: 'Home', href: '/' },
+          { label: 'Editorial', href: '/article' },
+          { label: 'Community', href: '/comments' },
         ],
       },
       {
-        title: 'Site',
+        title: 'Discover',
+        links: [
+          { label: 'Visuals', href: '/image' },
+          { label: 'Resources', href: '/pdf' },
+          { label: 'Saved links', href: '/sbm' },
+          { label: 'Community', href: '/comments' },
+        ],
+      },
+      {
+        title: 'Company',
         links: [
           { label: 'About', href: '/about' },
           { label: 'Contact', href: '/contact' },
+          { label: 'Create a post', href: '/create' },
+          { label: 'Comments', href: '/comments' },
         ],
       },
     ],
-    bottomNote: 'Built for clean discovery and connected publishing.',
+    bottomNote: 'Designed for public discovery, clear browsing, and polished presentation.',
   },
   commonLabels: {
     readMore: 'Read more',
