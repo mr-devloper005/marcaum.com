@@ -3,137 +3,149 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, Search, UserPlus, LogIn, X, PlusCircle } from 'lucide-react'
+import { Bell, ChevronDown, Menu, Search, ShoppingBag, User2, X } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { globalContent } from '@/editable/content/global.content'
 import { useEditableLocalAuthSession } from '@/editable/components/EditableLocalAuthForms'
+
+function isActive(pathname: string, href: string) {
+  return pathname === href || (href !== '/' && pathname.startsWith(`${href}/`))
+}
 
 export function EditableNavbar() {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const { session, logout } = useEditableLocalAuthSession()
-  const navItems = useMemo(
-    () => SITE_CONFIG.tasks.filter((task) => task.enabled).map((task) => ({ label: task.label, href: task.route })),
+  const taskLinks = useMemo(
+    () => SITE_CONFIG.tasks.filter((task) => task.enabled && !['listing', 'classified'].includes(task.key)).map((task) => ({ label: task.label, href: task.route })),
     []
   )
+  const marketLinks = globalContent.nav.marketLinks
 
   return (
-    <header className="sticky top-0 z-50 bg-[var(--editable-nav-bg)]/96 text-[var(--editable-nav-text)] backdrop-blur-md">
-      <div className="h-[3px] bg-[linear-gradient(90deg,transparent_0%,var(--slot4-accent)_20%,var(--slot4-accent)_80%,transparent_100%)]" />
-
-      <nav className="mx-auto flex min-h-[76px] w-full max-w-[var(--editable-container)] items-center gap-5 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex shrink-0 items-center gap-3 border-r border-[var(--editable-border)] pr-5">
-          <span className="flex h-11 w-11 items-center justify-center border border-[var(--slot4-accent)]/45 bg-[var(--slot4-surface-bg)] transition group-hover:border-[var(--slot4-accent)]">
-            <img src="/favicon.png?v=20260413" alt={SITE_CONFIG.name} className="h-8 w-8 object-contain" />
-          </span>
-          <span className="hidden min-w-0 md:block">
-            <span className="editable-display block max-w-[200px] truncate text-xl font-semibold leading-none tracking-[0.01em]">{SITE_CONFIG.name}</span>
-            <span className="mt-1 block max-w-[200px] truncate text-[10px] font-medium uppercase tracking-[0.26em] text-[var(--slot4-muted-text)]">
-              {globalContent.nav?.tagline || SITE_CONFIG.tagline}
-            </span>
-          </span>
-        </Link>
-
-        <div className="hidden items-stretch gap-0 lg:flex">
-          {navItems.slice(0, 5).map((item) => {
-            const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`relative flex items-center px-4 text-[11px] font-semibold uppercase tracking-[0.22em] transition ${
-                  active ? 'text-[var(--slot4-accent)]' : 'text-[var(--slot4-muted-text)] hover:text-[var(--slot4-page-text)]'
-                }`}
-              >
-                {item.label}
-                {active ? <span className="absolute inset-x-3 bottom-0 h-[2px] bg-[var(--slot4-accent)]" /> : null}
+    <header className="sticky top-0 z-50 border-b border-[rgba(15,14,14,0.08)] bg-[rgba(247,243,238,0.96)] text-[var(--slot4-page-text)] backdrop-blur-xl">
+      <div className="border-b border-[rgba(15,14,14,0.08)] bg-[#f1ebe4]">
+        <div className="mx-auto flex max-w-[var(--editable-container)] items-center justify-between gap-4 px-4 py-2 text-[11px] font-semibold tracking-[0.04em] text-[#635b58] sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-5">
+            {globalContent.nav.utilityLinks.map((item, index) => (
+              <Link key={item.href} href={item.href} className="transition hover:text-[#541212]">
+                {index === 0 && !session ? 'Hi! Sign in' : item.label}
               </Link>
-            )
-          })}
+            ))}
+          </div>
+          <div className="hidden items-center gap-5 md:flex">
+            <Link href="/comments" className="transition hover:text-[#541212]">Community</Link>
+            <Link href="/comments" className="transition hover:text-[#541212]">Watchlist</Link>
+            <Link href="/create" className="transition hover:text-[#541212]">Sell</Link>
+          </div>
         </div>
+      </div>
 
-        <form action="/search" className="mx-auto hidden min-w-0 flex-1 justify-center md:flex">
-          <label className="flex w-full max-w-md items-center gap-2 border-b border-[var(--slot4-accent)]/30 pb-2 transition focus-within:border-[var(--slot4-accent)]">
-            <Search className="h-4 w-4 shrink-0 text-[var(--slot4-accent)]" />
-            <input
-              name="q"
-              type="search"
-              placeholder="Search posts"
-              className="min-w-0 flex-1 bg-transparent text-sm font-medium outline-none placeholder:text-[var(--slot4-muted-text)]"
-            />
-          </label>
-        </form>
+      <div className="mx-auto max-w-[var(--editable-container)] px-4 sm:px-6 lg:px-8">
+        <nav className="flex min-h-[96px] items-center gap-4">
+          <Link href="/" className="flex shrink-0 items-center gap-3">
+            <span className="flex h-14 w-14 items-center justify-center overflow-hidden">
+              <img src="/favicon.png" alt={SITE_CONFIG.name} className="h-12 w-12 object-contain" />
+            </span>
+            <div className="hidden md:block">
+              <span className="editable-display block text-[2rem] font-semibold leading-none tracking-[-0.04em] text-[#0f0e0e]">
+                {SITE_CONFIG.name}
+              </span>
+              <span className="block pt-1 text-[10px] font-semibold uppercase tracking-[0.34em] text-[#635b58]">
+                {globalContent.nav.tagline}
+              </span>
+            </div>
+          </Link>
 
-        <div className="ml-auto flex shrink-0 items-center gap-2">
-          {session ? (
-            <>
-              <Link
-                href="/create"
-                className="hidden items-center gap-2 border border-[var(--slot4-accent)] bg-[var(--editable-cta-bg)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--editable-cta-text)] transition hover:opacity-90 sm:inline-flex"
-              >
-                <PlusCircle className="h-3.5 w-3.5" /> Create
-              </Link>
-              <button
-                type="button"
-                onClick={logout}
-                className="hidden items-center gap-2 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--slot4-muted-text)] transition hover:text-[var(--slot4-page-text)] sm:inline-flex"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link
-                href="/login"
-                className="hidden items-center gap-2 border border-[var(--editable-border)] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--slot4-muted-text)] transition hover:border-[var(--slot4-accent)]/40 hover:text-[var(--slot4-page-text)] sm:inline-flex"
-              >
-                <LogIn className="h-3.5 w-3.5" /> Login
-              </Link>
-              <Link
-                href="/signup"
-                className="hidden items-center gap-2 border border-[var(--slot4-accent)] bg-[var(--editable-cta-bg)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--editable-cta-text)] transition hover:opacity-90 sm:inline-flex"
-              >
-                <UserPlus className="h-3.5 w-3.5" /> Sign up
-              </Link>
-            </>
-          )}
+          <div className="hidden shrink-0 items-center gap-2 border-l border-[rgba(15,14,14,0.08)] pl-5 lg:flex">
+            <span className="text-sm font-medium text-[#635b58]">Shop by</span>
+            <button type="button" className="inline-flex items-center gap-1 text-sm font-semibold text-[#0f0e0e]">
+              category <ChevronDown className="h-4 w-4" />
+            </button>
+          </div>
+
+          <form action="/search" className="mx-auto hidden min-w-0 flex-1 items-center gap-3 md:flex">
+            <div className="flex min-w-0 flex-1 items-center overflow-hidden rounded-full border-2 border-[#0f0e0e] bg-[#fffdfa] shadow-[0_12px_36px_rgba(15,14,14,0.06)]">
+              <div className="flex flex-1 items-center gap-3 px-5">
+                <Search className="h-5 w-5 shrink-0 text-[#635b58]" />
+                <input
+                  name="q"
+                  type="search"
+                  placeholder="Search for listings, stories, or anything else"
+                  className="h-12 w-full min-w-0 bg-transparent text-sm text-[#0f0e0e] outline-none placeholder:text-[#8d837d]"
+                />
+              </div>
+              <div className="hidden h-12 items-center border-l border-[rgba(15,14,14,0.12)] px-4 lg:flex">
+                <select name="task" defaultValue="" className="bg-transparent text-sm text-[#635b58] outline-none">
+                  <option value="">All categories</option>
+                  {taskLinks.map((item) => <option key={item.href} value={item.label.toLowerCase()}>{item.label}</option>)}
+                </select>
+              </div>
+            </div>
+            <button className="inline-flex h-12 items-center justify-center rounded-full bg-[#468a9a] px-8 text-sm font-extrabold text-[#eeeeee] shadow-[0_14px_36px_rgba(70,138,154,0.28)] transition hover:translate-y-[-1px] hover:brightness-95">
+              Search
+            </button>
+          </form>
+
+          <div className="ml-auto hidden items-center gap-3 lg:flex">
+            <Link href="/login" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(15,14,14,0.12)] bg-[#fffdfa] text-[#0f0e0e] transition hover:border-[#541212] hover:text-[#541212]">
+              <User2 className="h-5 w-5" />
+            </Link>
+            <Link href="/comments" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(15,14,14,0.12)] bg-[#fffdfa] text-[#0f0e0e] transition hover:border-[#541212] hover:text-[#541212]">
+              <Bell className="h-5 w-5" />
+            </Link>
+            <Link href="/create" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(15,14,14,0.12)] bg-[#fffdfa] text-[#0f0e0e] transition hover:border-[#541212] hover:text-[#541212]">
+              <ShoppingBag className="h-5 w-5" />
+            </Link>
+          </div>
+
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
-            className="border border-[var(--editable-border)] bg-[var(--slot4-surface-bg)] p-2 lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(15,14,14,0.12)] bg-[#fffdfa] lg:hidden"
             aria-label="Toggle menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
-      <div className="h-px bg-[var(--editable-border)]" />
+      <div className="border-t border-[rgba(15,14,14,0.08)] bg-[#fffdfa]">
+        <div className="mx-auto hidden max-w-[var(--editable-container)] items-center gap-8 overflow-x-auto px-4 py-3 text-sm font-semibold text-[#3f3936] md:flex sm:px-6 lg:px-8">
+          {marketLinks.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`whitespace-nowrap transition ${isActive(pathname, item.href) ? 'text-[#541212]' : 'hover:text-[#468a9a]'}`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
 
       {open ? (
-        <div className="border-t border-[var(--editable-border)] bg-[var(--editable-nav-bg)] px-4 py-5 lg:hidden">
-          <form action="/search" className="mb-5 flex items-center gap-2 border-b border-[var(--slot4-accent)]/30 pb-2">
-            <Search className="h-4 w-4 text-[var(--slot4-accent)]" />
-            <input name="q" type="search" placeholder="Search posts" className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-[var(--slot4-muted-text)]" />
+        <div className="border-t border-[rgba(15,14,14,0.08)] bg-[#fffdfa] px-4 py-5 md:hidden">
+          <form action="/search" className="flex items-center gap-3 rounded-[1.25rem] border border-[rgba(15,14,14,0.12)] bg-white px-4 py-3">
+            <Search className="h-4 w-4 text-[#635b58]" />
+            <input name="q" type="search" placeholder="Search the site" className="w-full bg-transparent text-sm outline-none placeholder:text-[#8d837d]" />
           </form>
-          <div className="grid gap-1">
-            {[{ label: 'Home', href: '/' }, ...navItems, { label: 'Contact', href: '/contact' }, ...(session ? [{ label: 'Create', href: '/create' }] : [{ label: 'Login', href: '/login' }, { label: 'Sign up', href: '/signup' }])].map((item) => {
-              const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className={`border-l-2 px-4 py-3 text-sm font-semibold uppercase tracking-[0.16em] ${
-                    active
-                      ? 'border-[var(--slot4-accent)] bg-[var(--slot4-surface-bg)] text-[var(--slot4-accent)]'
-                      : 'border-transparent text-[var(--slot4-muted-text)] hover:border-[var(--slot4-accent)]/40 hover:bg-[var(--slot4-surface-bg)]'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              )
-            })}
+          <div className="mt-4 grid gap-2">
+            {[...marketLinks, ...taskLinks].map((item) => (
+              <Link
+                key={`${item.href}-${item.label}`}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-[1rem] px-4 py-3 text-sm font-semibold ${isActive(pathname, item.href) ? 'bg-[#541212] text-[#eeeeee]' : 'bg-[#f3ece6] text-[#0f0e0e]'}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+            {session ? (
+              <button type="button" onClick={logout} className="rounded-[1rem] bg-[#f3ece6] px-4 py-3 text-left text-sm font-semibold text-[#0f0e0e]">
+                Logout
+              </button>
+            ) : null}
           </div>
         </div>
       ) : null}
