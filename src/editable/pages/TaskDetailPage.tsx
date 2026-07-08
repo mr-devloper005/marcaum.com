@@ -157,7 +157,7 @@ function DetailIntro({ task, post }: { task: TaskKey; post: SitePost }) {
     <section className="border-b border-[var(--tk-line)]">
       <div className="mx-auto max-w-[var(--editable-container)] px-4 py-10 sm:px-6 lg:px-8">
         <div className={`${shellCard} overflow-hidden`}>
-          <div className="grid gap-8 bg-[linear-gradient(135deg,rgba(84,18,18,0.05),rgba(70,138,154,0.07))] p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
+          <div className="grid gap-8 bg-[linear-gradient(135deg,rgba(37,99,235,0.05),rgba(70,138,154,0.07))] p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
             <div>
               <BackLink task={task} />
               <div className="mt-5 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-[var(--tk-accent)]">

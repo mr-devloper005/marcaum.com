@@ -37,7 +37,7 @@ export function EditableFooter() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {globalContent.footer.columns.map((column) => (
               <div key={column.title}>
-                <h3 className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#541212]">{column.title}</h3>
+                <h3 className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#2563eb]">{column.title}</h3>
                 <div className="mt-4 grid gap-3">
                   {column.links.map((link) => (
                     <Link key={link.href} href={link.href} className="inline-flex items-center gap-2 text-sm font-medium text-[#3f3936] transition hover:text-[#468a9a]">
@@ -49,7 +49,7 @@ export function EditableFooter() {
             ))}
 
             <div>
-              <h3 className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#541212]">Account</h3>
+              <h3 className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#2563eb]">Account</h3>
               <div className="mt-4 grid gap-3">
                 {session ? (
                   <>

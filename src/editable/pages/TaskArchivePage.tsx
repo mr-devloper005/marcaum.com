@@ -265,12 +265,12 @@ function FeaturedArchiveCard({ post, href, task }: { post: SitePost; href: strin
   return (
     <Link href={href} className="group relative block min-h-[340px] overflow-hidden rounded-[1.75rem]">
       <img src={getImage(post)} alt={post.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(84,18,18,0.82),rgba(15,14,14,0.3)_48%,rgba(70,138,154,0.72))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(37,99,235,0.82),rgba(15,14,14,0.3)_48%,rgba(70,138,154,0.72))]" />
       <div className="relative flex h-full max-w-2xl flex-col justify-end p-7 text-[#eeeeee]">
         <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-white/74">{getCategory(post, task)}</p>
         <h2 className="editable-display mt-4 text-4xl font-semibold leading-[0.98] tracking-[-0.05em]">{post.title}</h2>
         <p className="mt-4 max-w-xl text-sm leading-7 text-white/82">{getSummary(post)}</p>
-        <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-extrabold text-[#541212]">
+        <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-extrabold text-[#2563eb]">
           Open feature <ArrowUpRight className="h-4 w-4" />
         </span>
       </div>

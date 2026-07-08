@@ -43,7 +43,7 @@ function featurePool(posts: SitePost[], timeSections: HomeTimeSection[]) {
 
 function FeaturedHeroCard({ post, href }: { post: SitePost; href: string }) {
   return (
-    <Link href={href} className="group relative block min-h-[360px] overflow-hidden rounded-[2rem] bg-[#5a2de2] p-8 text-[#eeeeee] shadow-[0_40px_90px_rgba(84,18,18,0.18)] sm:min-h-[420px] lg:min-h-[460px]">
+    <Link href={href} className="group relative block min-h-[360px] overflow-hidden rounded-[2rem] bg-[#5a2de2] p-8 text-[#eeeeee] shadow-[0_40px_90px_rgba(37,99,235,0.18)] sm:min-h-[420px] lg:min-h-[460px]">
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(90,45,226,0.96),rgba(70,138,154,0.85))]" />
       <div className="absolute inset-y-0 right-0 hidden w-[44%] lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-3 lg:p-4">
         {[0, 1, 2, 3].map((index) => (
@@ -76,7 +76,7 @@ function MosaicCard({ post, href, tall = false }: { post: SitePost; href: string
       <img src={getEditablePostImage(post)} alt={post.title} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_20%,rgba(15,14,14,0.8)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 p-4">
-        <span className="inline-flex rounded-full bg-white/90 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#541212]">
+        <span className="inline-flex rounded-full bg-white/90 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#2563eb]">
           {categoryOf(post)}
         </span>
         <h3 className="mt-3 line-clamp-2 text-base font-bold leading-snug text-white">
@@ -117,7 +117,7 @@ export function EditableHomeHero({ primaryTask, primaryRoute, posts, timeSection
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {categories.map((task) => (
-                    <Link key={task.key} href={task.route} className="rounded-full bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-[#541212] transition hover:bg-[#541212] hover:text-[#eeeeee]">
+                    <Link key={task.key} href={task.route} className="rounded-full bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-[#2563eb] transition hover:bg-[#2563eb] hover:text-[#eeeeee]">
                       {task.label}
                     </Link>
                   ))}
@@ -141,7 +141,7 @@ export function EditableHomeHero({ primaryTask, primaryRoute, posts, timeSection
                     <h2 className="text-3xl font-extrabold tracking-[-0.04em] text-[#0f0e0e]">Shopping made easy</h2>
                     <p className="mt-2 text-sm leading-6 text-[#635b58]">Explore reliable listings, polished profiles, and practical resources in one place.</p>
                   </div>
-                  <Link href={primaryRoute} className="inline-flex rounded-full bg-[#0f0e0e] px-5 py-3 text-sm font-extrabold text-[#eeeeee] transition hover:bg-[#541212]">
+                  <Link href={primaryRoute} className="inline-flex rounded-full bg-[#0f0e0e] px-5 py-3 text-sm font-extrabold text-[#eeeeee] transition hover:bg-[#2563eb]">
                     Start now
                   </Link>
                 </div>
@@ -181,7 +181,7 @@ export function EditableStoryRail({ primaryTask, primaryRoute, posts, timeSectio
             <h2 className="text-4xl font-extrabold tracking-[-0.05em] text-[#0f0e0e]">Featured live picks</h2>
             <p className="mt-2 text-lg text-[#635b58]">A fast-moving rail of standout posts, listings, and fresh highlights.</p>
           </div>
-          <Link href={primaryRoute} className="text-sm font-extrabold text-[#541212] transition hover:text-[#468a9a]">
+          <Link href={primaryRoute} className="text-sm font-extrabold text-[#2563eb] transition hover:text-[#468a9a]">
             See all
           </Link>
         </div>
@@ -255,7 +255,7 @@ export function EditableMagazineSplit({ primaryTask, primaryRoute, posts, timeSe
               label={categoryOf(post, `Category ${index + 1}`)}
               href={postHref(primaryTask, post, primaryRoute)}
               image={getEditablePostImage(post)}
-              accent={index % 3 === 0 ? '#541212' : index % 3 === 1 ? '#0f0e0e' : '#468a9a'}
+              accent={index % 3 === 0 ? '#2563eb' : index % 3 === 1 ? '#0f0e0e' : '#468a9a'}
             />
           ))}
         </div>
@@ -271,7 +271,7 @@ function DealCard({ post, href, index }: { post: SitePost; href: string; index: 
   return (
     <Link href={href} className="group block">
       <div className="relative overflow-hidden rounded-[1.5rem] bg-[#ebe6e1] p-3">
-        <div className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#541212] shadow-sm">
+        <div className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#2563eb] shadow-sm">
           <Star className="h-4 w-4" />
         </div>
         <div className="overflow-hidden rounded-[1.25rem] bg-[#f6f1eb]">
@@ -279,7 +279,7 @@ function DealCard({ post, href, index }: { post: SitePost; href: string; index: 
         </div>
       </div>
       <h3 className="mt-3 line-clamp-2 text-lg font-bold leading-snug text-[#0f0e0e]">{post.title}</h3>
-      <p className="mt-1 text-xl font-extrabold text-[#541212]">${(index + 2) * 24}.00 <span className="ml-2 text-sm font-medium text-[#8d837d] line-through">${(index + 3) * 31}.00</span></p>
+      <p className="mt-1 text-xl font-extrabold text-[#2563eb]">${(index + 2) * 24}.00 <span className="ml-2 text-sm font-medium text-[#8d837d] line-through">${(index + 3) * 31}.00</span></p>
     </Link>
   )
 }
@@ -287,7 +287,7 @@ function DealCard({ post, href, index }: { post: SitePost; href: string; index: 
 function EditorialListCard({ post, href, index }: { post: SitePost; href: string; index: number }) {
   return (
     <Link href={href} className="group flex gap-4 rounded-[1.5rem] border border-[rgba(15,14,14,0.08)] bg-[#fffdfa] p-4 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,14,14,0.06)]">
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#541212] text-sm font-extrabold text-[#eeeeee]">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#2563eb] text-sm font-extrabold text-[#eeeeee]">
         {String(index + 1).padStart(2, '0')}
       </div>
       <div className="min-w-0">
@@ -321,7 +321,7 @@ export function EditableTimeCollections({ primaryTask, primaryRoute, posts, time
                 <h2 className="text-4xl font-extrabold tracking-[-0.05em] text-[#0f0e0e]">Today&apos;s curated selections</h2>
                 <p className="mt-2 text-lg text-[#635b58]">A more commerce-shaped grid for featured cards and practical browsing.</p>
               </div>
-              <Link href={primaryRoute} className="text-sm font-extrabold text-[#541212] transition hover:text-[#468a9a]">
+              <Link href={primaryRoute} className="text-sm font-extrabold text-[#2563eb] transition hover:text-[#468a9a]">
                 See all
               </Link>
             </div>
@@ -334,7 +334,7 @@ export function EditableTimeCollections({ primaryTask, primaryRoute, posts, time
 
           <aside className="space-y-5 rounded-[2rem] border border-[rgba(15,14,14,0.08)] bg-[#fffdfa] p-6 shadow-[0_24px_50px_rgba(15,14,14,0.05)]">
             <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#541212] text-[#eeeeee]">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#2563eb] text-[#eeeeee]">
                 <Sparkles className="h-5 w-5" />
               </span>
               <div>
@@ -347,21 +347,21 @@ export function EditableTimeCollections({ primaryTask, primaryRoute, posts, time
             ))}
             <div className="rounded-[1.5rem] bg-[#f3ece6] p-5">
               <div className="flex items-center gap-3">
-                <Store className="h-5 w-5 text-[#541212]" />
+                <Store className="h-5 w-5 text-[#2563eb]" />
                 <p className="text-sm font-bold text-[#0f0e0e]">Business-ready browsing</p>
               </div>
               <div className="mt-4 grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
                 <div className="rounded-[1rem] bg-white px-4 py-3">
                   <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#635b58]">Active sections</p>
-                  <p className="mt-2 text-2xl font-extrabold text-[#541212]">{SITE_CONFIG.tasks.filter((task) => task.enabled).length}</p>
+                  <p className="mt-2 text-2xl font-extrabold text-[#2563eb]">{SITE_CONFIG.tasks.filter((task) => task.enabled).length}</p>
                 </div>
                 <div className="rounded-[1rem] bg-white px-4 py-3">
                   <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#635b58]">Fresh discoveries</p>
-                  <p className="mt-2 text-2xl font-extrabold text-[#541212]">{statLabel(featured, 12)}</p>
+                  <p className="mt-2 text-2xl font-extrabold text-[#2563eb]">{statLabel(featured, 12)}</p>
                 </div>
                 <div className="rounded-[1rem] bg-white px-4 py-3">
                   <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#635b58]">Growing interest</p>
-                  <p className="mt-2 inline-flex items-center gap-2 text-2xl font-extrabold text-[#541212]"><TrendingUp className="h-5 w-5" /> {statLabel(editorial, 25)}</p>
+                  <p className="mt-2 inline-flex items-center gap-2 text-2xl font-extrabold text-[#2563eb]"><TrendingUp className="h-5 w-5" /> {statLabel(editorial, 25)}</p>
                 </div>
               </div>
             </div>
@@ -376,7 +376,7 @@ export function EditableHomeCta() {
   return (
     <section className="pb-20">
       <div className={container}>
-        <div className="overflow-hidden rounded-[2rem] border border-[rgba(15,14,14,0.08)] bg-[linear-gradient(135deg,#541212_0%,#0f0e0e_55%,#468a9a_100%)] px-6 py-12 text-[#eeeeee] shadow-[0_30px_80px_rgba(15,14,14,0.18)] sm:px-10">
+        <div className="overflow-hidden rounded-[2rem] border border-[rgba(15,14,14,0.08)] bg-[linear-gradient(135deg,#2563eb_0%,#0f0e0e_55%,#468a9a_100%)] px-6 py-12 text-[#eeeeee] shadow-[0_30px_80px_rgba(15,14,14,0.18)] sm:px-10">
           <div className="max-w-3xl">
             <p className="text-xs font-extrabold uppercase tracking-[0.3em] text-white/72">{pagesContent.home.cta.badge}</p>
             <h2 className="editable-display mt-4 text-5xl font-semibold leading-[0.95] tracking-[-0.05em]">
@@ -386,7 +386,7 @@ export function EditableHomeCta() {
               {pagesContent.home.cta.description}
             </p>
             <div className="mt-7 flex flex-wrap gap-4">
-              <Link href={pagesContent.home.cta.primaryCta.href} className="inline-flex items-center gap-2 rounded-full bg-[#eeeeee] px-6 py-3 text-sm font-extrabold text-[#541212] transition hover:bg-white">
+              <Link href={pagesContent.home.cta.primaryCta.href} className="inline-flex items-center gap-2 rounded-full bg-[#eeeeee] px-6 py-3 text-sm font-extrabold text-[#2563eb] transition hover:bg-white">
                 {pagesContent.home.cta.primaryCta.label} <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href={pagesContent.home.cta.secondaryCta.href} className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-extrabold text-[#eeeeee] transition hover:bg-white/10">

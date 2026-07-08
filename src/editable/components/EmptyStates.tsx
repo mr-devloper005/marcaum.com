@@ -19,7 +19,7 @@ export function EmptyState({
 }: EmptyStateProps) {
   return (
     <section className={cn('rounded-[2rem] border border-[rgba(15,14,14,0.08)] bg-[#fffdfa] p-8 text-center shadow-[0_24px_60px_rgba(15,14,14,0.05)]', className)}>
-      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#541212] text-[#eeeeee]">
+      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#2563eb] text-[#eeeeee]">
         <SearchX className="h-7 w-7" />
       </div>
       <h2 className="editable-display mt-6 text-4xl font-semibold tracking-[-0.05em] text-[#0f0e0e]">{title}</h2>

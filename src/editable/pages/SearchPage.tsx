@@ -62,11 +62,11 @@ function SearchResultCard({ post, index }: { post: SitePost; index: number }) {
         <div className={`relative overflow-hidden bg-black ${strong ? 'aspect-[16/7]' : 'aspect-[16/10]'}`}>
           <img src={image} alt="" className="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-          <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#541212]">{taskLabel}</span>
+          <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#2563eb]">{taskLabel}</span>
         </div>
       ) : null}
       <div className="p-5 sm:p-6">
-        {!image ? <span className="rounded-full bg-[#541212] px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#eeeeee]">{taskLabel}</span> : null}
+        {!image ? <span className="rounded-full bg-[#2563eb] px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#eeeeee]">{taskLabel}</span> : null}
         <h2 className="editable-display mt-4 line-clamp-3 text-3xl font-semibold leading-[0.95] tracking-[-0.05em] text-[#0f0e0e]">{post.title}</h2>
         {summary ? <p className="mt-4 line-clamp-3 text-sm font-semibold leading-7 text-[#635b58]">{summary}</p> : null}
         <span className="mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.18em] text-[#468a9a]">Open result <ArrowRight className="h-4 w-4" /></span>
